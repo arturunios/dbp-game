@@ -1,4 +1,41 @@
 Rails.application.routes.draw do
+ 
+  resources :units
+
+  resources :damage_types
+
+  resources :ship  
+ 
+  resources :ship_groups
+
+  resources :fighting_fleets
+
+  resources :fights
+
+  resources :sciences
+
+  resources :expiditions
+
+  resources :notifications
+  resources :messages
+  resources :stations
+  resources :ships_stations
+  resources :ships
+  resources :sciences
+  resources :ranks
+
+  get 'home/index'
+
+  devise_for :users
+  devise_scope :user do
+    authenticated :user do
+      root :to => 'home#index'
+    end
+    unauthenticated :user do
+      root :to => 'home#index', as: :unauthenticated_root
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
